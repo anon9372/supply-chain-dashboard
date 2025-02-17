@@ -37,7 +37,9 @@ const Filter = ({ onSearch, onReset }) => {
             { value: "Brazil", label: "Brazil" },
             { value: "Germany", label: "Germany" },
             { value: "India", label: "India" },
-            { value: "Australia", label: "Australia" },
+            { value: "Japan", label: "Japan" },
+            { value: "Singapore", label: "Singapore" },
+            { value: "Vietnam", label: "Vietnam" },
           ]}
           placeholder="Select a country..."
         />
@@ -51,11 +53,10 @@ const Filter = ({ onSearch, onReset }) => {
           onChange={handleChange}
           options={[
             { value: "", label: "All Regions" },
-            { value: "North America", label: "North America" },
-            { value: "South America", label: "South America" },
-            { value: "Europe", label: "Europe" },
-            { value: "Asia", label: "Asia" },
-            { value: "Africa", label: "Africa" },
+            { value: "North", label: "North" },
+            { value: "East", label: "East" },
+            { value: "West", label: "West" },
+            { value: "South", label: "South" },
           ]}
           placeholder="Select a region..."
         />

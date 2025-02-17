@@ -5,7 +5,8 @@ import AddDataForm from "../organisms/addDataForm";
 import { useDispatch } from "react-redux";
 import "../../style/modal.css";
 
-const AddDataModal = ({ isOpen, onClose }) => {
+const AddDataModal = ({ isOpen, onClose, data }) => {
+  console.log("TEST DATA", data)
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -69,7 +70,7 @@ const AddDataModal = ({ isOpen, onClose }) => {
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-500"
           >
             Save
           </button>

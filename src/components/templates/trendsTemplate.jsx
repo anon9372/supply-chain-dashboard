@@ -29,7 +29,9 @@ const TrendsTemplate = () => {
   };
 
   const prepareLineChartData = () => {
-    const uniqueDates = [...new Set(filteredData.map((item) => item.date))].sort();
+    const uniqueDates = [
+      ...new Set(filteredData.map((item) => item.date)),
+    ].sort();
 
     const groupedData = uniqueDates.map((date) => {
       const totalSpend = filteredData
@@ -63,8 +65,20 @@ const TrendsTemplate = () => {
   };
 
   const columnDefs = [
-    { headerName: "Country", field: "country", sortable: true, filter: true, width: 150 },
-    { headerName: "Region", field: "region", sortable: true, filter: true, width: 150 },
+    {
+      headerName: "Country",
+      field: "country",
+      sortable: true,
+      filter: true,
+      width: 150,
+    },
+    {
+      headerName: "Region",
+      field: "region",
+      sortable: true,
+      filter: true,
+      width: 150,
+    },
     {
       headerName: "Spend Amount ($)",
       field: "spendAmount",
@@ -72,7 +86,13 @@ const TrendsTemplate = () => {
       filter: true,
       width: 150,
     },
-    { headerName: "Date", field: "date", sortable: true, filter: true, width: 150 },
+    {
+      headerName: "Date",
+      field: "date",
+      sortable: true,
+      filter: true,
+      width: 150,
+    },
     {
       headerName: "Edit",
       field: "edit",
@@ -108,17 +128,37 @@ const TrendsTemplate = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-lg w-full mx-auto">
-        <div className="ag-theme-alpine" style={{ height: 450, width: "100%" }}>
+        <div
+          className="ag-theme-alpine"
+          style={{ height: "100%", width: "100%" }}
+        >
           <AgGridReact
             rowData={filteredData}
             columnDefs={columnDefs}
-            pagination={true}
-            paginationPageSize={10}
+            pagination={false}
             domLayout="autoHeight"
             suppressHorizontalScroll={true}
             rowStyle={{ fontSize: "14px", lineHeight: "1.6" }}
-            headerHeight={50}
-            rowHeight={40}
+            headerHeight={55}
+            rowHeight={45}
+            defaultColDef={{
+              flex: 1,
+              minWidth: 120,
+              sortable: true,
+              filter: true,
+              resizable: true,
+              cellStyle: {
+                display: "flex",
+                alignItems: "center",
+                textAlign: "center",
+              },
+            }}
+            getRowStyle={(params) => ({
+              backgroundColor:
+                params.node.rowIndex % 2 === 0 ? "#F8FAFC" : "#FFFFFF",
+              borderBottom: "1px solid #E2E8F0",
+              transition: "background 0.3s ease",
+            })}
           />
         </div>
       </div>

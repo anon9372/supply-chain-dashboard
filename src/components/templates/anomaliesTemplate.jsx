@@ -27,7 +27,7 @@ ChartJS.register(
   Legend
 );
 
-const AnomaliesTemplate = () => {
+const AnomaliesTemplate = ({filterData}) => {
   const storeData = useSelector((state) => state);
   const anomaliesData = storeData.map((item) => ({
     severityLevel: item.severity,

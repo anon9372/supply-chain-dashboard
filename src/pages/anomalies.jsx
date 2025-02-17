@@ -43,12 +43,7 @@ const Anomalies = () => {
     const filtered = dummyData.filter((item) => {
       const matchesCountry = !country || item.country === country;
       const matchesRegion = !region || item.region === region;
-      const matchesDateRange =
-        (!dateRange[0] && !dateRange[1]) ||
-        (new Date(item.dateRange.split(" - ")[0]) >= dateRange[0] &&
-          new Date(item.dateRange.split(" - ")[1]) <= dateRange[1]);
-
-      return matchesCountry && matchesRegion && matchesDateRange;
+      return matchesCountry && matchesRegion;
     });
 
     setFilteredData(filtered);

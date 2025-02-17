@@ -22,7 +22,7 @@ const initialState = [
     severityDescription: "Increased Costs",
   },
   {
-    country: "Germany",
+    country: "Singapore",
     region: "East",
     supplyType: "Barley",
     spendAmount: "6000 USD",
@@ -31,7 +31,7 @@ const initialState = [
     severityDescription: "Minor Delays",
   },
   {
-    country: "Germany",
+    country: "Japan",
     region: "East",
     supplyType: "Barley",
     spendAmount: "6000 USD",
