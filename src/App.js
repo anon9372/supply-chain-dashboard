@@ -27,7 +27,7 @@ const AppContent = () => {
 
         <div
           className={`flex-1 p-8 bg-gray-100 transition-all duration-300 overflow-y-auto ${
-            !isLoginPage && isExpanded ? "ml-64" : "ml-0"
+            !isLoginPage && isExpanded ? "ml-64" : "ml-16"
           }`}
           style={{ maxHeight: "calc(100vh - 64px)" }}
         >
