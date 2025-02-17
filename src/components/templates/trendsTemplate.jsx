@@ -1,70 +1,40 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import AddDataModal from "../organisms/addDataModal"; // Import your modal component
-
-const dummyData = [
-  {
-    country: "USA",
-    region: "North America",
-    supplyType: "Food",
-    spendAmount: 20000,
-    date: "2023-01-01",
-  },
-  {
-    country: "Brazil",
-    region: "South America",
-    supplyType: "Agriculture",
-    spendAmount: 15000,
-    date: "2023-02-15",
-  },
-  {
-    country: "Germany",
-    region: "Europe",
-    supplyType: "Logistics",
-    spendAmount: 10000,
-    date: "2023-03-10",
-  },
-  {
-    country: "India",
-    region: "Asia",
-    supplyType: "Food",
-    spendAmount: 18000,
-    date: "2023-04-05",
-  },
-];
+import AddDataModal from "../organisms/addDataModal";
+import { useSelector } from "react-redux";
 
 const TrendsTemplate = () => {
-  const [filteredData, setFilteredData] = useState(dummyData);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [selectedRow, setSelectedRow] = useState(null); // State to store selected row data
+  const storeData = useSelector((state) => state);
 
-  // Function to open the modal
+  const [filteredData, setFilteredData] = useState(storeData);
+
+  useEffect(() => {
+    setFilteredData(storeData);
+  }, [storeData]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
   const openModal = (rowData) => {
-    setSelectedRow(rowData); // Set the selected row data
-    setIsModalOpen(true); // Open the modal
+    setSelectedRow(rowData);
+    setIsModalOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
-    setSelectedRow(null); // Clear the selected row data
-    setIsModalOpen(false); // Close the modal
+    setSelectedRow(null);
+    setIsModalOpen(false);
   };
 
-  // Prepare Line Chart Data
   const prepareLineChartData = () => {
-    // Extract unique dates and sort them
     const uniqueDates = [...new Set(filteredData.map((item) => item.date))].sort();
 
-    // Group spend amounts by date
     const groupedData = uniqueDates.map((date) => {
       const totalSpend = filteredData
         .filter((item) => item.date === date)
-        .reduce((sum, item) => sum + item.spendAmount, 0);
-
+        .reduce((sum, item) => sum + parseFloat(item.spendAmount), 0);
       return { date, totalSpend };
     });
 
@@ -92,7 +62,6 @@ const TrendsTemplate = () => {
     },
   };
 
-  // AG Grid Column Definitions
   const columnDefs = [
     { headerName: "Country", field: "country", sortable: true, filter: true, width: 150 },
     { headerName: "Region", field: "region", sortable: true, filter: true, width: 150 },
@@ -105,11 +74,11 @@ const TrendsTemplate = () => {
     },
     { headerName: "Date", field: "date", sortable: true, filter: true, width: 150 },
     {
-      headerName: "Edit", // New column for edit action
+      headerName: "Edit",
       field: "edit",
       cellRenderer: (params) => (
         <button
-          onClick={() => openModal(params.data)} // Pass row data to the modal
+          onClick={() => openModal(params.data)}
           className="text-blue-500 hover:text-blue-700 focus:outline-none"
         >
           <svg
@@ -128,18 +97,16 @@ const TrendsTemplate = () => {
           </svg>
         </button>
       ),
-      width: 100, // Fixed width for the edit column
+      width: 100,
     },
   ];
 
   return (
     <div className="space-y-6">
-      {/* Line Chart */}
       <div className="bg-white p-4 rounded shadow-md">
         <Line data={lineChartData} options={lineChartOptions} />
       </div>
 
-      {/* AG Grid Table */}
       <div className="bg-white p-6 rounded-lg shadow-lg w-full mx-auto">
         <div className="ag-theme-alpine" style={{ height: 450, width: "100%" }}>
           <AgGridReact
@@ -156,12 +123,11 @@ const TrendsTemplate = () => {
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <AddDataModal
           isOpen={isModalOpen}
           onClose={closeModal}
-          formData={selectedRow} // Pass the selected row data to the modal
+          formData={selectedRow}
         />
       )}
     </div>

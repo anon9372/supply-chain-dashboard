@@ -1,4 +1,3 @@
-// src/pages/Overview.jsx
 import React, { useState } from 'react';
 import OverviewTemplate from '../components/templates/overviewTemplate';
 

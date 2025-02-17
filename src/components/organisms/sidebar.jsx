@@ -1,4 +1,3 @@
-// src/components/Sidebar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -18,7 +17,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 isExpanded ? "flex items-center px-4" : "block"
               } py-2 mb-4 rounded `}
             >
-              {/* Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -34,7 +32,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 />
               </svg>
 
-              {/* Label */}
               <span
                 className={`ml-2 transition-opacity duration-300 ${
                   isExpanded ? "block" : "hidden"
@@ -51,7 +48,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 isExpanded ? "flex items-center px-4" : "block"
               }  py-2  mb-4  rounded`}
             >
-              {/* Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -67,7 +63,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 />
               </svg>
 
-              {/* Label */}
               <span
                 className={`ml-2 transition-opacity duration-300 ${
                   isExpanded ? "block" : "hidden"
@@ -84,7 +79,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 isExpanded ? "flex items-center px-4" : "block"
               } py-2  mb-4  rounded`}
             >
-              {/* Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -100,7 +94,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 />
               </svg>
 
-              {/* Label */}
               <span
                 className={`ml-2 transition-opacity duration-300 ${
                   isExpanded ? "block" : "hidden"
@@ -117,7 +110,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 isExpanded ? "flex items-center px-4" : "block"
               }  py-2  mb-4  rounded`}
             >
-              {/* Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -133,7 +125,6 @@ const Sidebar = ({ isExpanded, toggleSidebar }) => {
                 />
               </svg>
 
-              {/* Label */}
               <span
                 className={`ml-2 transition-opacity duration-300 ${
                   isExpanded ? "block" : "hidden"

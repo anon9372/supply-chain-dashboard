@@ -1,4 +1,3 @@
-// src/components/molecules/DateRangePicker.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../atoms/dataPicker';

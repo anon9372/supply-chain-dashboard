@@ -1,10 +1,8 @@
-// src/components/atoms/Select.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import SelectComponent from 'react-select';
 
 const Select = ({ name, value, onChange, options, className = '', placeholder = 'Select an option' }) => {
-  // Convert the selected value into the format expected by react-select
   const selectedOption = options.find((option) => option.value === value);
 
   // Handle changes in the react-select component

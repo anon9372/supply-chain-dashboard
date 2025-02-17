@@ -1,17 +1,15 @@
-// src/components/organisms/AddDataModal.jsx
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import AddDataForm from "../organisms/addDataForm";
-import { useDispatch } from "react-redux"; // Import useDispatch from react-redux
+import { useDispatch } from "react-redux";
 import "../../style/modal.css";
 
 const AddDataModal = ({ isOpen, onClose }) => {
-  const dispatch = useDispatch(); // Get the dispatch function
+  const dispatch = useDispatch();
 
-  // Initialize formData with default values
   const [formData, setFormData] = useState({
-    date: null, // Single date instead of date range
+    date: null,
     severityLevel: "",
     spendAmount: "",
     supplyType: "",
@@ -20,20 +18,17 @@ const AddDataModal = ({ isOpen, onClose }) => {
     description: "",
   });
 
-  // Handle changes in form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Handle single date change
   const handleDateChange = (e) => {
     setFormData((prevData) => ({ ...prevData, date: e.target.value }));
   };
 
-  // Handle form submission
   const handleSubmit = () => {
-    // Dispatch an action to add the new data to the Redux store
+   
     dispatch({
       type: "ADD_DATA",
       payload: {
@@ -42,13 +37,13 @@ const AddDataModal = ({ isOpen, onClose }) => {
         supplyType: formData.supplyType,
         spendAmount: formData.spendAmount,
         date: formData.date,
-        severity: formData.severityLevel.toLowerCase(), // Convert to lowercase for consistency
+        severity: formData.severityLevel.toLowerCase(),
         severityDescription: formData.description,
       },
     });
 
     console.log("Form Data Submitted:", formData);
-    onClose(); // Close the modal after submission
+    onClose();
   };
 
   return (
@@ -61,9 +56,9 @@ const AddDataModal = ({ isOpen, onClose }) => {
       <div className="bg-white p-6 rounded shadow-md">
         <h2 className="text-xl font-bold mb-4">Add Data</h2>
         <AddDataForm
-          formData={formData} // Pass formData to the child component
+          formData={formData}
           handleChange={handleChange}
-          handleDateChange={handleDateChange} // Pass handleDateChange for single date
+          handleDateChange={handleDateChange}
         />
         <div className="flex justify-end space-x-4 mt-4">
           <button

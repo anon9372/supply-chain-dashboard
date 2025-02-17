@@ -1,4 +1,3 @@
-// src/components/organisms/AddDataForm.jsx
 import React from "react";
 import PropTypes from "prop-types";
 import Creatable from "react-select/creatable";
@@ -6,9 +5,8 @@ import SeverityLevelDropdown from "../molecules/severityLevelDropdown";
 import SpendAmountInput from "../molecules/spendAmountInput";
 
 const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
-  // Ensure formData has default values
   const data = {
-    date: formData.date || null, // Single date instead of date range
+    date: formData.date || null,
     severityLevel: formData.severityLevel || "",
     spendAmount: formData.spendAmount || "",
     supplyType: formData.supplyType || "",
@@ -17,7 +15,6 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
     description: formData.description || "",
   };
 
-  // Predefined options for Supply Type
   const predefinedSupplyTypes = [
     { value: "Rice", label: "Rice" },
     { value: "Wheat", label: "Wheat" },
@@ -26,7 +23,6 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
     { value: "Pulses", label: "Pulses" },
   ];
 
-  // Predefined options for Country
   const predefinedCountries = [
     { value: "India", label: "India" },
     { value: "China", label: "China" },
@@ -35,7 +31,6 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
     { value: "Japan", label: "Japan" },
   ];
 
-  // Options for Region (static dropdown)
   const regionOptions = [
     { value: "North", label: "North" },
     { value: "East", label: "East" },
@@ -43,7 +38,6 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
     { value: "South", label: "South" },
   ];
 
-  // Handle changes in Creatable Select fields
   const handleCreatableChange = (selectedOption, name) => {
     const value = selectedOption ? selectedOption.value : "";
     handleChange({ target: { name, value } });
@@ -51,19 +45,17 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
 
   return (
     <form className="space-y-4">
-      {/* Single Date Picker */}
       <div>
         <label className="block text-sm font-medium text-gray-700">Date</label>
         <input
           type="date"
           name="date"
           value={data.date}
-          onChange={handleDateChange} // Use handleDateChange for single date
+          onChange={handleDateChange}
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
         />
       </div>
 
-      {/* Severity Level */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Severity Level
@@ -71,12 +63,13 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
         <SeverityLevelDropdown
           value={data.severityLevel}
           onChange={(e) =>
-            handleChange({ target: { name: "severityLevel", value: e.target.value } })
+            handleChange({
+              target: { name: "severityLevel", value: e.target.value },
+            })
           }
         />
       </div>
 
-      {/* Spend Amount */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Spend Amount ($)
@@ -87,44 +80,47 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
         />
       </div>
 
-      {/* Supply Type */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Supply Type
         </label>
         <Creatable
-  options={predefinedSupplyTypes}
-  value={
-    predefinedSupplyTypes.find((option) => option.value === data.supplyType) || null
-  }
-  onChange={(selectedOption) => {
-    console.log("Supply Type Selected:", selectedOption); // Debugging line
-    handleCreatableChange(selectedOption, "supplyType");
-  }}
-  placeholder="Select or create a supply type..."
-  isClearable
-  formatCreateLabel={(inputValue) => `Add "${inputValue}"`}
-  styles={{
-    control: (baseStyles) => ({
-      ...baseStyles,
-      borderColor: "#d1d5db",
-      borderRadius: "0.375rem",
-      boxShadow: "none",
-      "&:hover": {
-        borderColor: "#9ca3af",
-      },
-    }),
-  }}
-/>
+          options={predefinedSupplyTypes}
+          value={
+            predefinedSupplyTypes.find(
+              (option) => option.value === data.supplyType
+            ) || null
+          }
+          onChange={(selectedOption) => {
+            handleCreatableChange(selectedOption, "supplyType");
+          }}
+          placeholder="Select or create a supply type..."
+          isClearable
+          formatCreateLabel={(inputValue) => `Add "${inputValue}"`}
+          styles={{
+            control: (baseStyles) => ({
+              ...baseStyles,
+              borderColor: "#d1d5db",
+              borderRadius: "0.375rem",
+              boxShadow: "none",
+              "&:hover": {
+                borderColor: "#9ca3af",
+              },
+            }),
+          }}
+        />
       </div>
 
-      {/* Country */}
       <div>
-        <label className="block text-sm font-medium text-gray-700">Country</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Country
+        </label>
         <Creatable
           options={predefinedCountries}
           value={
-            predefinedCountries.find((option) => option.value === data.country) || null
+            predefinedCountries.find(
+              (option) => option.value === data.country
+            ) || null
           }
           onChange={(selectedOption) =>
             handleCreatableChange(selectedOption, "country")
@@ -146,9 +142,10 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
         />
       </div>
 
-      {/* Region */}
       <div>
-        <label className="block text-sm font-medium text-gray-700">Region</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Region
+        </label>
         <select
           name="region"
           value={data.region}
@@ -164,7 +161,6 @@ const AddDataForm = ({ formData = {}, handleChange, handleDateChange }) => {
         </select>
       </div>
 
-      {/* Anomaly Description */}
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Description
@@ -242,7 +238,7 @@ AddDataForm.propTypes = {
     description: PropTypes.string,
   }),
   handleChange: PropTypes.func.isRequired,
-  handleDateChange: PropTypes.func.isRequired, // Updated prop for single date
+  handleDateChange: PropTypes.func.isRequired,
 };
 
 export default AddDataForm;

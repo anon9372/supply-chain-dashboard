@@ -1,4 +1,3 @@
-// src/components/atoms/Button.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,7 +7,7 @@ const Button = ({ children, onClick, className = '', type = 'button', disabled =
       type={type}
       onClick={onClick}
       className={`px-4 py-2 rounded font-medium transition duration-200 ${className} ${
-        disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
+        disabled ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100 text-white hover:bg-blue-700'
       }`}
       disabled={disabled}
     >

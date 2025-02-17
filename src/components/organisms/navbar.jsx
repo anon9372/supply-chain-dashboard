@@ -1,12 +1,9 @@
-// src/components/NavBar.jsx
-import React from 'react';
+import React from "react";
 
 const NavBar = ({ toggleSidebar }) => {
   return (
     <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
-      {/* Left Section: Hamburger Icon and App Logo */}
       <div className="flex items-center space-x-4">
-        {/* Hamburger Icon */}
         <button
           onClick={toggleSidebar}
           className="text-white hover:text-gray-300 focus:outline-none"
@@ -18,19 +15,22 @@ const NavBar = ({ toggleSidebar }) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
 
-        {/* App Logo */}
         <div className="text-lg font-bold">Supply Chain Dashboard</div>
       </div>
 
-      {/* Right Section: User Profile */}
       <div className="flex items-center space-x-4">
         <span>Welcome, User</span>
         <img
-          src="https://i.pravatar.cc/40" // Placeholder avatar image
+          src="https://i.pravatar.cc/40"
           alt="User Avatar"
           className="w-10 h-10 rounded-full"
         />

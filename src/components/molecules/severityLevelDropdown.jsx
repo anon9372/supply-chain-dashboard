@@ -1,4 +1,3 @@
-// src/components/molecules/SeverityLevelDropdown.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '../atoms/select';

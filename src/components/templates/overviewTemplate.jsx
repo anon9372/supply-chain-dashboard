@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "../atoms/button";
 import Card from "../atoms/card";
 import AddDataModal from "../organisms/addDataModal";
-import { useSelector } from "react-redux"; // Import useSelector from react-redux
+import { useSelector } from "react-redux";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,7 +17,6 @@ import {
 } from "chart.js";
 import { Bar, Line } from "react-chartjs-2";
 
-// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -30,10 +29,8 @@ ChartJS.register(
 );
 
 const OverviewTemplate = ({ isModalOpen, setIsModalOpen }) => {
-  // Access the Redux store data
   const storeData = useSelector((state) => state);
 
-  // Calculate counts for severity levels
   const getCountBySeverity = (severityLevel) => {
     return storeData.filter((item) => item.severity === severityLevel).length;
   };
@@ -43,7 +40,6 @@ const OverviewTemplate = ({ isModalOpen, setIsModalOpen }) => {
   const moderateCount = getCountBySeverity("moderate");
   const lowCount = getCountBySeverity("low");
 
-  // Calculate total spend by supply type
   const supplyTypes = [...new Set(storeData.map((item) => item.supplyType))];
   const barChartData = {
     labels: supplyTypes,
@@ -68,7 +64,6 @@ const OverviewTemplate = ({ isModalOpen, setIsModalOpen }) => {
     },
   };
 
-  // Calculate spend trends over time
   const uniqueDates = [...new Set(storeData.map((item) => item.date))].sort();
   const lineChartData = {
     labels: uniqueDates,
@@ -97,13 +92,11 @@ const OverviewTemplate = ({ isModalOpen, setIsModalOpen }) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Overview</h1>
         <Button onClick={() => setIsModalOpen(true)}>Add Data</Button>
       </div>
 
-      {/* Severity Level Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card title="Critical" value={criticalCount} color="red" />
         <Card title="Severe" value={severeCount} color="orange" />
@@ -111,22 +104,18 @@ const OverviewTemplate = ({ isModalOpen, setIsModalOpen }) => {
         <Card title="Low" value={lowCount} color="green" />
       </div>
 
-      {/* Data Insights and Trends */}
       <div className="flex gap-4">
-        {/* Data Insights (Bar Chart) */}
         <div className="bg-white p-4 rounded shadow-md flex-1">
           <h2 className="text-xl font-bold mb-4">Data Insights</h2>
           <Bar data={barChartData} options={barChartOptions} />
         </div>
 
-        {/* Trends (Line Chart) */}
         <div className="bg-white p-4 rounded shadow-md flex-1">
           <h2 className="text-xl font-bold mb-4">Trends</h2>
           <Line data={lineChartData} options={lineChartOptions} />
         </div>
       </div>
 
-      {/* Add Data Modal */}
       <AddDataModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );

@@ -8,28 +8,21 @@ import DataInsights from "./pages/dataInsights";
 import Trends from "./pages/trends";
 
 const App = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
 
-  // Toggle sidebar expanded/collapsed state
+  const [isExpanded, setIsExpanded] = useState(true);
   const toggleSidebar = () => setIsExpanded(!isExpanded);
 
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        {/* Navbar */}
         <NavBar toggleSidebar={toggleSidebar} />
-
-        {/* Main Content Area */}
         <div className="flex flex-1 overflow-hidden">
-          {/* Sidebar */}
           <Sidebar isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
-
-          {/* Pages Container */}
           <div
             className={`flex-1 p-8 bg-gray-100 transition-all duration-300 overflow-y-auto ${
               isExpanded ? "ml-64" : "ml-16"
             }`}
-            style={{ maxHeight: "calc(100vh - 64px)" }} // Subtract navbar height
+            style={{ maxHeight: "calc(100vh - 64px)" }}
           >
             <Routes>
               <Route path="/" element={<Overview />} />
@@ -44,4 +37,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App; 

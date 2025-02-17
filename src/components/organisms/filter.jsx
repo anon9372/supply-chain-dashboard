@@ -1,4 +1,3 @@
-// src/components/organisms/Filter.jsx
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Select from "../atoms/select";
@@ -10,18 +9,15 @@ const Filter = ({ onSearch, onReset }) => {
     region: "",
   });
 
-  // Handle changes in filters
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
-  // Handle Search button click
   const handleSearch = () => {
     onSearch(filters);
   };
 
-  // Handle Reset button click
   const handleReset = () => {
     setFilters({ country: "", region: "" });
     onReset();
@@ -29,7 +25,6 @@ const Filter = ({ onSearch, onReset }) => {
 
   return (
     <div className="flex space-x-4">
-      {/* Country */}
       <div className="flex-1">
         <label className="block text-sm font-medium text-gray-700">Country</label>
         <Select
@@ -48,7 +43,6 @@ const Filter = ({ onSearch, onReset }) => {
         />
       </div>
 
-      {/* Region */}
       <div className="flex-1">
         <label className="block text-sm font-medium text-gray-700">Region</label>
         <Select
@@ -67,7 +61,6 @@ const Filter = ({ onSearch, onReset }) => {
         />
       </div>
 
-      {/* Buttons */}
       <div className="flex items-end justify-end space-x-2 flex-1">
         <Button
           onClick={handleSearch}
